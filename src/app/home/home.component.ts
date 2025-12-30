@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router, RouterLink } from '@angular/router';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 @Component({
@@ -32,9 +32,14 @@ export class HomeComponent implements OnInit,AfterViewInit{
     this.window()
     this.fadeIn()
 
-      this.router.events.subscribe((event) => {
-      if(event instanceof NavigationEnd) {
-        window.scrollTo(0, 0); // Scroll to top on navigation
+    // this.router.events.subscribe((event) => {
+      //   if(event instanceof NavigationStart) {
+        //   window.scrollTo({ top: 0, left: 0});
+        //   }
+        // })
+    this.router.events.subscribe((event) => {
+      if(event instanceof NavigationStart) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
       }
     })
   }

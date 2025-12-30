@@ -29,6 +29,13 @@
      opacity: 1;
      margin: 5rem 0 5rem;
 }
+.about .about-content h1 span{
+       font-size: clamp(7rem, 15vw, 10rem);
+       font-weight: 700;
+       -webkit-text-stroke: 1px var(--black-color);
+       background-clip: text;
+       color: transparent;
+}
 .about .about-content .item{
   border: 5px solid rgba(114, 114, 114, 0.164);
   outline: 20px solid rgba(114, 114, 114, 0.164);
@@ -276,7 +283,7 @@ footer .last-footer p:nth-of-type(1){
   margin-bottom: 1rem;
 }
 footer .footer-content{
-  margin-top: 9rem;
+  margin-top: 3rem;
 }
 footer .footer-content .col-footer{
   display: flex;

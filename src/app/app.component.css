@@ -1,4 +1,174 @@
+ 
+.section{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--black-color);
+ position: fixed;
+ top: 0;
+ left: 0%;
+ z-index: 110;
+ overflow: hidden;
+}
+.section .cover{
+  padding: 1rem;
+  overflow: hidden;
+}
+.section .wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 800px;
+  overflow: hidden;
+}
+.section span{
+  color: var(--white-color);
+  font-size: 3rem;
+  font-weight: 600;
+  width: fit-content;
+}
+.section .A{
+  transform-origin: bottom center;
+  transform-style: preserve-3d;
+  transform: rotateX(180deg);
+  /* background-color: red; */
+  height: 100px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+.flip {
+  width: 20px;
+  height: 73px;
+  perspective: 1000px; /* يعطي عمق ثلاثي الأبعاد */
+  overflow: hidden;
+  /* background-color: blue; */
+}
+.flip-inner {
+  width: 100%;
+  height: 100%;
+  transform: translateY(90px);
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d; /* مهم للحفاظ على ثلاثية الأبعاد */
+  cursor: pointer;
+  /* background-color: green; */
+}
+.face,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* يخفي الوجه الخلفي عند الدوران */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white-color);
+  font-size: 3rem;
+  font-weight: 600;
+}
+.back {
+  transform: rotateY(180deg); /* الخلف يدور لتصبح مواجهًا بعد الدوران */
+}
+.flip img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) scale(0.2);
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+}
+.wrapper .g-con{
+  /* background-color: green; */
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 
+}
+.wrapper .g-con .g{
+  transform: translateY(-200px);
+}
+.wrapper .e-con{
+  height: 103px;
+  /* background-color: green; */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.wrapper .e-con .content-img-word{
+  display: flex;
+  align-items: center;
+  transform: translateX(-12px);
+}
+.wrapper .e-con .content-img-word .img-word{
+  /* background-color: blue; */
+  height: 103px;
+  width: 30px;
+  position: relative;
+  /* display: flex; */
+  /* align-items: center; */
+  /* color: rgb(165, 111, 209); */
+  /* color: rgb(241, 140, 93); */
+  /* color: rgb(81, 168, 81); */
+}
+.wrapper .e-con .content-img-word .img-word span{
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.wrapper .e-con .content-img-word .img-word img{
+  width: 1.8rem;
+  height: 1.8rem;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%) rotate(0deg);
+  animation: rotate 1s linear infinite;
+  display: none;
+}
+@keyframes rotate {
+  to{
+    transform:translateX(-50%) rotate(360deg);
+  }
+}
+.aletter{
+  /* background-color: red; */
+  height: 43px;
+  width: 27px;
+  position: relative;
+  overflow: hidden;
+  /* display: none; */
+}
+.aletter .contentletter {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  /* height: 163px; */
+  /* background-color: blue; */
+  position: absolute;
+  bottom: 50px;
+}
+.aletter .contentletter span{
+  height: 45px;
+  display: flex;
+  align-items: center;
+  /* background-color: green; */
+}
+.wletter{
+  transform: scale(0.2) ;
+  opacity: 0;
+}
+.yletter{
+  transform: rotate(-90deg);
+  opacity: 0;
+}
+/* =========== */
 header{
     z-index: 100;
     transition: 2s ease;

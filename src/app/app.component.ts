@@ -1,15 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, HostListener, NgZone, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { NavigationEnd, Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import Lenis from '@studio-freight/lenis';
 import { filter } from 'rxjs/internal/operators/filter';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet,RouterLink,RouterModule,CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent  implements OnInit {
+export class AppComponent  implements OnInit , AfterViewInit{
     title = 'testapp';
  
   currentActiveLink: string = '';
@@ -31,9 +33,43 @@ export class AppComponent  implements OnInit {
   ngOnInit(): void {
     // this.window()
     // this.menu()
+        this.router.events.subscribe((event) => {
+      if(event instanceof NavigationStart) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      }
+    })
+
+setTimeout(() => {
+  window.scrollTo(0, 0);
+}, 0);
   }
   
-
+  ngAfterViewInit(): void {
+       gsap.registerPlugin(ScrollTrigger);
+       gsap.to('.A',{ rotationX: 0 , duration: 1 , ease:'power1.out'});
+       const tl = gsap.timeline();
+      tl.timeScale(2);
+      tl.to('.section .wrapper',{ translateY: -300 ,duration:1},9)
+      tl.to('.sectionanimation',{ height: 0 ,duration:1},9)
+       tl.to('.flair',{ opacity: 1 ,scale:1, duration:0.4} , 1);
+       tl.to('.flair',{ translateY: -150, duration:0.5} , 2);
+       tl.to('.flip-inner',{ translateY: 0, duration:0} , 2);
+       tl.to('.flip-inner',{ rotationY: 180 , duration:0} , 3);
+      //  tl.to('.flip-inner',{ rotationX: 360 , duration:0} , 5);
+      //  tl.to('.flip-inner',{ rotationX: 0 , duration:0} , 9);
+       tl.to('.g',{ translateY: 0 , duration:0.3 } , 4);
+       tl.to('.content-img-word',{ translateX: 0 , duration:0.3 } , 5);
+       tl.to('.img-word img',{ display: 'block' } , 3);
+       tl.to('.img-word img',{ top: 180 ,  duration:0.4 } , 6);
+       tl.to('.img-word span',{ top: 15 ,  duration:0.4 } , 7);
+       tl.to('.contentletter',{ bottom: -3 ,  duration:0.3 } , 3);
+       tl.to('.contentletter',{ bottom: 100 ,  duration:0.3 } , 5);
+       tl.to('.contentletter',{ top: 0 , duration:1 } , 6);
+       tl.to('.wletter',{ scale: 1  , opacity: 1 ,rotateY: 360,  duration:0.8 } , 4);
+       tl.to('.wletter',{  opacity: 1 ,rotateY: 0,  duration: 0.8 } , 8);
+       tl.to('.yletter',{  opacity: 1 ,rotate: 0,  duration: 0.8 } , 7);
+  // =====================
+  }
 
   list(){
       this.menuActive = false
